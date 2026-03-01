@@ -28,16 +28,14 @@ class AuthRepositoryImpl extends AuthRepository {
         password: password,
       );
       if (response.statusCode == 200) {
-        var user = UserModel.fromJson(response.data);
+        var user = UserModel.fromJson(response.data['user'] ?? response.data);
         await localDataSource.cacheUserToken(response.data['token']);
         await localDataSource.cacheUser(user);
         await remoteDataSource.updateFcmToken();
         return Right(user);
       } else {
         return Left(
-          ServerFailure(
-            'Login failed with status code: ${response.statusCode}',
-          ),
+          ServerFailure.fromResponse(response.statusCode, response.data),
         );
       }
     } on DioException catch (e) {
@@ -79,7 +77,7 @@ class AuthRepositoryImpl extends AuthRepository {
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {
-        var user = UserModel.fromJson(response.data);
+        var user = UserModel.fromJson(response.data['user'] ?? response.data);
         await localDataSource.cacheUserToken(response.data['token']);
         await localDataSource.cacheUser(user);
 
@@ -89,9 +87,7 @@ class AuthRepositoryImpl extends AuthRepository {
       } else {
         log(response.data.toString());
         return Left(
-          ServerFailure(
-            'Registration failed with status code: ${response.statusCode}',
-          ),
+          ServerFailure.fromResponse(response.statusCode, response.data),
         );
       }
     } on DioException catch (e) {

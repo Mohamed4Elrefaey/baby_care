@@ -20,11 +20,13 @@ class DoctorModel {
   @HiveField(7)
   final String workingHours;
   @HiveField(8)
-  final int price;
+  final double price;
   @HiveField(9)
   final String address;
   @HiveField(10)
   final String phone;
+  @HiveField(11)
+  final Map<String, dynamic> extraFields;
 
   DoctorModel({
     required this.id,
@@ -38,21 +40,56 @@ class DoctorModel {
     required this.price,
     required this.address,
     required this.phone,
+    this.extraFields = const {},
   });
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
+    final knownKeys = {
+      '_id',
+      'name',
+      'imageUrl',
+      'specialty',
+      'bio',
+      'whatsappNumber',
+      'clinics',
+      'workingHours',
+      'price',
+      'address',
+      'phone',
+    };
+    final extra = Map<String, dynamic>.from(json)
+      ..removeWhere((key, value) => knownKeys.contains(key));
+
     return DoctorModel(
-      id: json['_id'],
-      name: json['name'],
-      imageUrl: json['imageUrl'],
-      specialty: json['specialty'],
-      bio: json['bio'],
-      whatsappNumber: json['whatsappNumber'],
+      id: json['_id'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      imageUrl: json['imageUrl'] as String? ?? '',
+      specialty: json['specialty'] as String? ?? '',
+      bio: json['bio'] as String? ?? '',
+      whatsappNumber: json['whatsappNumber'] as String? ?? '',
       clinics: List<String>.from(json['clinics'] ?? []),
-      workingHours: json['workingHours'],
-      price: json['price'],
-      address: json['address'],
-      phone: json['phone'],
+      workingHours: json['workingHours'] as String? ?? '',
+      price: (json['price'] as num?)?.toDouble() ?? 0.0,
+      address: json['address'] as String? ?? '',
+      phone: json['phone'] as String? ?? '',
+      extraFields: extra,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      '_id': id,
+      'name': name,
+      'imageUrl': imageUrl,
+      'specialty': specialty,
+      'bio': bio,
+      'whatsappNumber': whatsappNumber,
+      'clinics': clinics,
+      'workingHours': workingHours,
+      'price': price,
+      'address': address,
+      'phone': phone,
+      ...extraFields,
+    };
   }
 }

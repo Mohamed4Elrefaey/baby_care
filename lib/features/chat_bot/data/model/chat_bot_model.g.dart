@@ -19,17 +19,20 @@ class ChatBotModelAdapter extends TypeAdapter<ChatBotModel> {
     return ChatBotModel(
       tixt: fields[0] as String,
       isAnswer: fields[1] as bool,
+      extraFields: (fields[2] as Map).cast<String, dynamic>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, ChatBotModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.tixt)
       ..writeByte(1)
-      ..write(obj.isAnswer);
+      ..write(obj.isAnswer)
+      ..writeByte(2)
+      ..write(obj.extraFields);
   }
 
   @override

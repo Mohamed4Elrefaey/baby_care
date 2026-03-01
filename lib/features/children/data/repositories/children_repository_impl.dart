@@ -29,14 +29,15 @@ class ChildrenRepositoryImpl implements ChildrenRepository {
       } else {
         var respons = await remoteDataSource.getChildren();
         if (respons.statusCode == 200) {
+          final data = respons.data['data'] ?? respons.data;
           List<ChildModel> children = [];
-          for (var element in (respons.data as List<dynamic>)) {
+          for (var element in (data as List<dynamic>)) {
             children.add(ChildModel.fromJson(element));
           }
           await localDataSource.cacheChildrenList(children);
           return right(children);
         } else {
-          return left(ServerFailure('there was ${respons.statusCode}'));
+          return left(ServerFailure.fromResponse(respons.statusCode, respons.data));
         }
       }
     } on DioException catch (e) {

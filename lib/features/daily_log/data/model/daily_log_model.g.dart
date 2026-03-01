@@ -1,57 +1,57 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'article_model.dart';
+part of 'daily_log_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ArticleModelAdapter extends TypeAdapter<ArticleModel> {
+class DailyLogModelAdapter extends TypeAdapter<DailyLogModel> {
   @override
-  final int typeId = 7;
+  final int typeId = 11;
 
   @override
-  ArticleModel read(BinaryReader reader) {
+  DailyLogModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return ArticleModel(
+    return DailyLogModel(
       id: fields[0] as String,
-      title: fields[1] as String,
-      content: fields[2] as String,
-      category: fields[3] as String,
-      imageUrl: fields[4] as String,
-      author: fields[5] as String,
-      createdAt: fields[6] as DateTime?,
-      updatedAt: fields[7] as DateTime?,
-      description: fields[8] as String,
+      childId: fields[1] as String,
+      logType: fields[2] as String,
+      startTime: fields[3] as DateTime?,
+      endTime: fields[4] as DateTime?,
+      notes: fields[5] as String?,
+      quantity: fields[6] as double?,
+      unit: fields[7] as String?,
+      diaperType: fields[8] as String?,
       extraFields: (fields[9] as Map).cast<String, dynamic>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, ArticleModel obj) {
+  void write(BinaryWriter writer, DailyLogModel obj) {
     writer
       ..writeByte(10)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.title)
+      ..write(obj.childId)
       ..writeByte(2)
-      ..write(obj.content)
+      ..write(obj.logType)
       ..writeByte(3)
-      ..write(obj.category)
+      ..write(obj.startTime)
       ..writeByte(4)
-      ..write(obj.imageUrl)
+      ..write(obj.endTime)
       ..writeByte(5)
-      ..write(obj.author)
+      ..write(obj.notes)
       ..writeByte(6)
-      ..write(obj.createdAt)
+      ..write(obj.quantity)
       ..writeByte(7)
-      ..write(obj.updatedAt)
+      ..write(obj.unit)
       ..writeByte(8)
-      ..write(obj.description)
+      ..write(obj.diaperType)
       ..writeByte(9)
       ..write(obj.extraFields);
   }
@@ -62,7 +62,7 @@ class ArticleModelAdapter extends TypeAdapter<ArticleModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ArticleModelAdapter &&
+      other is DailyLogModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

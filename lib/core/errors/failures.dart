@@ -41,7 +41,15 @@ class ServerFailure extends Failure {
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(response['error']['message']);
+      String errorMessage = 'Opps There was an Error, Please try again';
+      if (response is Map) {
+        if (response['error'] is Map && response['error']['message'] != null) {
+          errorMessage = response['error']['message'];
+        } else if (response['message'] != null) {
+          errorMessage = response['message'];
+        }
+      }
+      return ServerFailure(errorMessage);
     } else if (statusCode == 404) {
       return ServerFailure('Your request not found, Please try later!');
     } else if (statusCode == 500) {

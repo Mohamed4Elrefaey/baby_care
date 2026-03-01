@@ -1,58 +1,52 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'medicine_model.dart';
+part of 'growth_record_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class MedicineModelAdapter extends TypeAdapter<MedicineModel> {
+class GrowthRecordModelAdapter extends TypeAdapter<GrowthRecordModel> {
   @override
-  final int typeId = 9;
+  final int typeId = 13;
 
   @override
-  MedicineModel read(BinaryReader reader) {
+  GrowthRecordModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return MedicineModel(
+    return GrowthRecordModel(
       id: fields[0] as String,
-      name: fields[1] as String,
-      description: fields[2] as String,
-      details: fields[3] as String,
-      form: fields[4] as String,
-      category: fields[5] as String,
-      usage: fields[6] as String,
-      sideEffects: fields[7] as String,
-      imageUrl: fields[8] as String,
-      extraFields: (fields[9] as Map).cast<String, dynamic>(),
+      childId: fields[1] as String,
+      weight: fields[2] as double,
+      height: fields[3] as double,
+      headCircumference: fields[4] as double?,
+      dateOfMeasurement: fields[5] as DateTime?,
+      notes: fields[6] as String?,
+      extraFields: (fields[7] as Map).cast<String, dynamic>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, MedicineModel obj) {
+  void write(BinaryWriter writer, GrowthRecordModel obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.name)
+      ..write(obj.childId)
       ..writeByte(2)
-      ..write(obj.description)
+      ..write(obj.weight)
       ..writeByte(3)
-      ..write(obj.details)
+      ..write(obj.height)
       ..writeByte(4)
-      ..write(obj.form)
+      ..write(obj.headCircumference)
       ..writeByte(5)
-      ..write(obj.category)
+      ..write(obj.dateOfMeasurement)
       ..writeByte(6)
-      ..write(obj.usage)
+      ..write(obj.notes)
       ..writeByte(7)
-      ..write(obj.sideEffects)
-      ..writeByte(8)
-      ..write(obj.imageUrl)
-      ..writeByte(9)
       ..write(obj.extraFields);
   }
 
@@ -62,7 +56,7 @@ class MedicineModelAdapter extends TypeAdapter<MedicineModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is MedicineModelAdapter &&
+      other is GrowthRecordModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

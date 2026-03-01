@@ -1,8 +1,14 @@
 import 'package:baby_care/features/auth/data/model/user_model.dart';
 import 'package:baby_care/features/blog/data/model/article_model.dart';
+import 'package:baby_care/features/blog/data/model/comment_model.dart';
+import 'package:baby_care/features/blog/data/model/post_model.dart';
 import 'package:baby_care/features/chat_bot/data/model/chat_bot_model.dart';
 import 'package:baby_care/features/children/data/model/child_model.dart';
+import 'package:baby_care/features/daily_log/data/model/daily_log_model.dart';
 import 'package:baby_care/features/doctors/data/model/doctor_model.dart';
+import 'package:baby_care/features/faq/data/model/faq_model.dart';
+import 'package:baby_care/features/growth/data/model/growth_record_model.dart';
+import 'package:baby_care/features/locations/data/model/health_unit_model.dart';
 import 'package:baby_care/features/medicine/data/model/medicine_model.dart';
 import 'package:baby_care/features/sounds/data/model/sound_model.dart';
 import 'package:baby_care/features/vaccination/data/model/vaccine_model.dart';
@@ -62,6 +68,12 @@ class HiveHelper {
     Hive.registerAdapter(SoundModelAdapter());
     Hive.registerAdapter(MedicineModelAdapter());
     Hive.registerAdapter(DoctorModelAdapter());
+    Hive.registerAdapter(DailyLogModelAdapter());
+    Hive.registerAdapter(FaqModelAdapter());
+    Hive.registerAdapter(GrowthRecordModelAdapter());
+    Hive.registerAdapter(PostModelAdapter());
+    Hive.registerAdapter(CommentModelAdapter());
+    Hive.registerAdapter(HealthUnitModelAdapter());
   }
 
   static Future<bool> containsKey({

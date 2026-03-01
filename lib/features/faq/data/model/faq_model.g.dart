@@ -1,58 +1,46 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'article_model.dart';
+part of 'faq_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ArticleModelAdapter extends TypeAdapter<ArticleModel> {
+class FaqModelAdapter extends TypeAdapter<FaqModel> {
   @override
-  final int typeId = 7;
+  final int typeId = 12;
 
   @override
-  ArticleModel read(BinaryReader reader) {
+  FaqModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return ArticleModel(
+    return FaqModel(
       id: fields[0] as String,
-      title: fields[1] as String,
-      content: fields[2] as String,
+      question: fields[1] as String,
+      answer: fields[2] as String,
       category: fields[3] as String,
-      imageUrl: fields[4] as String,
-      author: fields[5] as String,
-      createdAt: fields[6] as DateTime?,
-      updatedAt: fields[7] as DateTime?,
-      description: fields[8] as String,
-      extraFields: (fields[9] as Map).cast<String, dynamic>(),
+      keywords: (fields[4] as List).cast<String>(),
+      extraFields: (fields[5] as Map).cast<String, dynamic>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, ArticleModel obj) {
+  void write(BinaryWriter writer, FaqModel obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.title)
+      ..write(obj.question)
       ..writeByte(2)
-      ..write(obj.content)
+      ..write(obj.answer)
       ..writeByte(3)
       ..write(obj.category)
       ..writeByte(4)
-      ..write(obj.imageUrl)
+      ..write(obj.keywords)
       ..writeByte(5)
-      ..write(obj.author)
-      ..writeByte(6)
-      ..write(obj.createdAt)
-      ..writeByte(7)
-      ..write(obj.updatedAt)
-      ..writeByte(8)
-      ..write(obj.description)
-      ..writeByte(9)
       ..write(obj.extraFields);
   }
 
@@ -62,7 +50,7 @@ class ArticleModelAdapter extends TypeAdapter<ArticleModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ArticleModelAdapter &&
+      other is FaqModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

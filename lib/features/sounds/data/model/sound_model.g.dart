@@ -23,13 +23,14 @@ class SoundModelAdapter extends TypeAdapter<SoundModel> {
       category: fields[3] as String,
       audioUrl: fields[4] as String,
       imageUrl: fields[5] as String,
+      extraFields: (fields[6] as Map).cast<String, dynamic>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, SoundModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class SoundModelAdapter extends TypeAdapter<SoundModel> {
       ..writeByte(4)
       ..write(obj.audioUrl)
       ..writeByte(5)
-      ..write(obj.imageUrl);
+      ..write(obj.imageUrl)
+      ..writeByte(6)
+      ..write(obj.extraFields);
   }
 
   @override

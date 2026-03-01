@@ -1,40 +1,43 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_model.dart';
+part of 'health_unit_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class UserModelAdapter extends TypeAdapter<UserModel> {
+class HealthUnitModelAdapter extends TypeAdapter<HealthUnitModel> {
   @override
-  final int typeId = 0;
+  final int typeId = 16;
 
   @override
-  UserModel read(BinaryReader reader) {
+  HealthUnitModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return UserModel(
+    return HealthUnitModel(
       id: fields[0] as String,
       name: fields[1] as String,
-      email: fields[2] as String,
-      extraFields: (fields[3] as Map).cast<String, dynamic>(),
+      governorate: fields[2] as String,
+      city: fields[3] as String,
+      extraFields: (fields[4] as Map).cast<String, dynamic>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, UserModel obj) {
+  void write(BinaryWriter writer, HealthUnitModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.email)
+      ..write(obj.governorate)
       ..writeByte(3)
+      ..write(obj.city)
+      ..writeByte(4)
       ..write(obj.extraFields);
   }
 
@@ -44,7 +47,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is UserModelAdapter &&
+      other is HealthUnitModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

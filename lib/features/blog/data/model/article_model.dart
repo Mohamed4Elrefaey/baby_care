@@ -16,11 +16,13 @@ class ArticleModel {
   @HiveField(5)
   final String author;
   @HiveField(6)
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @HiveField(7)
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
   @HiveField(8)
   final String description;
+  @HiveField(9)
+  final Map<String, dynamic> extraFields;
 
   ArticleModel({
     required this.id,
@@ -29,22 +31,53 @@ class ArticleModel {
     required this.category,
     required this.imageUrl,
     required this.author,
-    required this.createdAt,
-    required this.updatedAt,
+    this.createdAt,
+    this.updatedAt,
     required this.description,
+    this.extraFields = const {},
   });
 
   factory ArticleModel.fromJson(Map<String, dynamic> json) {
+    final knownKeys = {
+      '_id',
+      'title',
+      'content',
+      'category',
+      'imageUrl',
+      'author',
+      'createdAt',
+      'updatedAt',
+      'description',
+    };
+    final extra = Map<String, dynamic>.from(json)
+      ..removeWhere((key, value) => knownKeys.contains(key));
+
     return ArticleModel(
-      id: json['_id'],
-      title: json['title'],
-      content: json['content'],
-      category: json['category'],
-      imageUrl: json['imageUrl'],
-      author: json['author']['name'],
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
-      description: json['description'],
+      id: json['_id'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+      content: json['content'] as String? ?? '',
+      category: json['category'] as String? ?? '',
+      imageUrl: json['imageUrl'] as String? ?? '',
+      author: json['author'] is Map ? (json['author']['name'] ?? '') : (json['author']?.toString() ?? ''),
+      createdAt: json['createdAt'] != null ? DateTime.tryParse(json['createdAt']) : null,
+      updatedAt: json['updatedAt'] != null ? DateTime.tryParse(json['updatedAt']) : null,
+      description: json['description'] as String? ?? '',
+      extraFields: extra,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      '_id': id,
+      'title': title,
+      'content': content,
+      'category': category,
+      'imageUrl': imageUrl,
+      'author': author,
+      'createdAt': createdAt?.toIso8601String(),
+      'updatedAt': updatedAt?.toIso8601String(),
+      'description': description,
+      ...extraFields,
+    };
   }
 }

@@ -1,34 +1,38 @@
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 
-part 'vaccine_model.g.dart';
+part 'health_unit_model.g.dart';
 
-@HiveType(typeId: 2)
-class VaccineModel {
+@HiveType(typeId: 16)
+class HealthUnitModel {
   @HiveField(0)
   final String id;
   @HiveField(1)
   final String name;
   @HiveField(2)
-  final String? description;
+  final String governorate;
   @HiveField(3)
+  final String city;
+  @HiveField(4)
   final Map<String, dynamic> extraFields;
 
-  VaccineModel({
+  HealthUnitModel({
     required this.id,
     required this.name,
-    this.description,
+    required this.governorate,
+    required this.city,
     this.extraFields = const {},
   });
 
-  factory VaccineModel.fromJson(Map<String, dynamic> json) {
-    final knownKeys = {'_id', 'name', 'description'};
+  factory HealthUnitModel.fromJson(Map<String, dynamic> json) {
+    final knownKeys = {'_id', 'name', 'governorate', 'city'};
     final extra = Map<String, dynamic>.from(json)
       ..removeWhere((key, value) => knownKeys.contains(key));
 
-    return VaccineModel(
+    return HealthUnitModel(
       id: json['_id'] as String? ?? '',
       name: json['name'] as String? ?? '',
-      description: json['description'] as String?,
+      governorate: json['governorate'] as String? ?? '',
+      city: json['city'] as String? ?? '',
       extraFields: extra,
     );
   }
@@ -37,7 +41,8 @@ class VaccineModel {
     return {
       '_id': id,
       'name': name,
-      'description': description,
+      'governorate': governorate,
+      'city': city,
       ...extraFields,
     };
   }
