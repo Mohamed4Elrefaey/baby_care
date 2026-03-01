@@ -6,7 +6,7 @@ import '../helper/shared_preferences_service.dart';
 
 class ApiHelper {
   Dio dio;
-  final String baseUrl = 'https://vax.teqnyah.com';
+  final String baseUrl = 'https://vax.teqnyah.com/api';
 
   ApiHelper(this.dio);
 

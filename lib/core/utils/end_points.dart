@@ -1,126 +1,75 @@
 class ApiEndpoints {
-  // ==============================================================================
-  // 1. المصادقة (Authentication)
-  // ==============================================================================
+  // Authentication
   static const String register = "/auth/register";
   static const String login = "/auth/login";
-  static const String changePassword = "/auth/change-password";
-  static const String googleLogin = "/auth/google";
-  static const String facebookLogin = "/auth/facebook";
 
-  // الملف الشخصي
-  static const String myProfile =
-      "/auth/me"; // GET: جلب البيانات, DELETE: حذف الحساب
-  static const String updateProfile = "/auth/profile"; // PUT: تعديل البيانات
-  static const String updateFcmToken =
-      "/auth/fcm-token"; // PUT: تحديث توكن الإشعارات
+  // Articles
+  static const String articles = "/articles";
+  static String article(String id) => "/articles/$id";
 
-  // ==============================================================================
-  // 2. الوحدات الصحية (للاختيار في القوائم فقط)
-  // ==============================================================================
-  static const String healthUnits = "/locations"; // GET Only
+  // Children
+  static const String children = "/children";
+  static const String myChildren = "/children/my-children";
+  static String childVaccinationSchedule(String id) => "/children/$id/vaccination-schedule";
 
-  // ==============================================================================
-  // 3. الأطفال (Children)
-  // ==============================================================================
-  static const String children =
-      "/children"; // POST: إضافة طفل (ممرضة), GET: بحث (ممرضة)
-  static const String myChildren =
-      "/children/my-children"; // GET: أطفالي (للأم)
-  static String child(String childId) =>
-      "/children/$childId"; // GET: تفاصيل, PUT: تعديل
+  // Comments
+  static String postComments(String postId) => "/comments/$postId";
+  static String deleteComment(String commentId) => "/comments/$commentId";
+  static String commentsByPost(String postId) => "/comments/post/$postId";
+  static String toggleCommentLike(String commentId) => "/comments/$commentId/toggle-like";
 
-  // ==============================================================================
-  // 4. سجلات التطعيمات (Vaccination Records)
-  // ==============================================================================
-  static String childVaccinationSchedule(String childId) =>
-      "/records/child/$childId"; // GET: عرض الجدول
-  static String childVaccinationScheduleHome(String childId) =>
-      "/records/child/$childId?mode=home"; // GET: عرض الجدول
-  static String updateVaccineStatus(String scheduleId) =>
-      "/records/$scheduleId"; // PUT: تأكيد التطعيم (ممرضة)
+  // Daily Logs
+  static const String logs = "/logs";
+  static String childLogs(String childId) => "/logs/child/$childId";
+  static String deleteLog(String logId) => "/logs/$logId";
+  static String logSummary(String childId) => "/logs/child/$childId/summary";
 
-  // ==============================================================================
-  // 5. سجلات النمو (Growth Records) - للأم
-  // ==============================================================================
-  static const String growth = "/growth"; // POST: إضافة قياس
-  static String childGrowthHistory(String childId) =>
-      "/growth/child/$childId"; // GET: سجل القياسات
-  static String growthRecord(String recordId) =>
-      "/growth/$recordId"; // PUT: تعديل, DELETE: حذف
+  // Doctors
+  static const String doctors = "/doctors";
+  static const String nearbyDoctors = "/doctors/nearby";
 
-  // ==============================================================================
-  // 6. السجلات اليومية (Daily Logs) - للأم
-  // ==============================================================================
-  static const String logs = "/logs"; // POST: إضافة سجل (نوم/رضاعة)
-  static String childLogs(String childId) =>
-      "/logs/child/$childId"; // GET: عرض السجلات
-  static String logRecord(String logId) =>
-      "/logs/$logId"; // PUT: تعديل, DELETE: حذف
+  // FAQs
+  static const String faqs = "/faqs";
+  static const String faqSearch = "/faqs/search";
 
-  // ==============================================================================
-  // 7. يوميات الطفل/الذكريات (Diary) - للأم
-  // ==============================================================================
-  static const String diary = "/diary"; // POST: إضافة ذكرى
-  static String childDiary(String childId) =>
-      "/diary/child/$childId"; // GET: عرض الذكريات
-  static String diaryEntry(String entryId) =>
-      "/diary/$entryId"; // PUT: تعديل, DELETE: حذف
+  // Growth
+  static const String growth = "/growth";
+  static String childGrowth(String childId) => "/growth/child/$childId";
+  static String growthStats(String childId) => "/growth/child/$childId/stats";
 
-  // ==============================================================================
-  // 8. المجتمع (Community/Posts) - تفاعلي
-  // ==============================================================================
-  static const String posts = "/posts"; // GET: كل البوستات, POST: نشر بوست
-  static String post(String postId) =>
-      "/posts/$postId"; // GET: تفاصيل بوست, DELETE: حذف (لصاحب البوست)
-  static String postComments(String postId) =>
-      "/posts/$postId/comments"; // POST: تعليق
-  static String deleteComment(String commentId) =>
-      "/comments/$commentId"; // DELETE: حذف تعليق
-  static String toggleLike(String postId) =>
-      "/posts/$postId/like"; // PUT: لايك/ديسلايك
+  // Locations
+  static const String locations = "/locations";
+  static String deleteLocation(String id) => "/locations/$id";
 
-  // ==============================================================================
-  // 9. المحتوى الطبي (عرض فقط - View Only)
-  // ==============================================================================
+  // Medicines
+  static const String medicines = "/medicines";
+  static String medicine(String id) => "/medicines/$id";
 
-  // المقالات
-  static const String articles = "/articles"; // GET
-  static String article(String articleId) => "/articles/$articleId"; // GET
+  // Notifications
+  static const String notifications = "/notifications";
+  static String markNotificationRead(String id) => "/notifications/$id/read";
+  static const String sendNotification = "/notifications/send";
+  static const String markAllNotificationsRead = "/notifications/mark-all-read";
+  static String deleteNotification(String id) => "/notifications/$id";
 
-  // الأدوية
-  static const String medicines = "/medicines"; // GET
-  static String medicine(String medicineId) => "/medicines/$medicineId"; // GET
+  // Posts
+  static const String posts = "/posts";
+  static String post(String postId) => "/posts/$postId";
+  static String postAction(String postId) => "/posts/$postId/action";
+  static String savePost(String postId) => "/posts/$postId/save";
 
-  // الأطباء
-  static const String doctors = "/doctors"; // GET
-  static const String nearbyDoctors = "/doctors/nearby"; // GET (يحتاج lat, lng)
-  static String doctor(String doctorId) => "/doctors/$doctorId"; // GET
+  // Records
+  static String childRecords(String childId) => "/records/child/$childId";
+  static String takeRecord(String id) => "/records/$id/take";
+  static String undoRecord(String id) => "/records/$id/undo";
+  static String overdueRecords(String childId) => "/records/child/$childId/overdue";
+  static String calculateRecords(String childId) => "/records/child/$childId/calculate";
 
-  // الأصوات
-  static const String sounds = "/sounds"; // GET
-  static String sound(String soundId) => "/sounds/$soundId"; // GET
+  // Sounds
+  static const String sounds = "/sounds";
+  static String sound(String id) => "/sounds/$id";
 
-  // الوصفات
-  static const String recipes = "/recipes"; // GET
-  static String recipe(String recipeId) => "/recipes/$recipeId"; // GET (تفاصيل)
-
-  // ==============================================================================
-  // 10. الشات بوت والأسئلة الشائعة
-  // ==============================================================================
-  static const String faqs = "/faqs"; // GET
-  static const String chatbotSearch = "/faqs/search"; // GET (يحتاج ?q=...)
-  static String faq(String faqId) => "/faqs/$faqId"; // GET
-
-  // ==============================================================================
-  // 11. الإشعارات
-  // ==============================================================================
-  static const String notifications =
-      "/admin/notifications/logs"; // GET (اسم الرابط في البوستمان غريب لكنه للمستخدم)
-
-  // ==============================================================================
-  // 12. تعريفات التطعيمات (للعرض فقط)
-  // ==============================================================================
-  static const String vaccinesList =
-      "/vaccines"; // GET: القائمة الرسمية للتطعيمات
+  // Vaccines
+  static const String vaccines = "/vaccines";
+  static const String seedVaccines = "/vaccines/seed";
 }

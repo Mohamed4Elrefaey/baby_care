@@ -40,7 +40,7 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+    if (statusCode == 400 || statusCode == 401 || statusCode == 403 || statusCode == 409) {
       String errorMessage = 'Opps There was an Error, Please try again';
       if (response is Map) {
         if (response['error'] is Map && response['error']['message'] != null) {
