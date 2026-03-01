@@ -38,13 +38,13 @@ class ArticlesCareWidget extends StatelessWidget {
             border: Border.all(color: AppColors.bG1),
             boxShadow: [
               BoxShadow(
-                color: Color(0xFF000000).withValues(alpha: 0.04),
+                color: Color(0xFF000000).withOpacity(0.04),
                 spreadRadius: 2,
                 blurRadius: 4,
                 offset: const Offset(0, 0),
               ),
               BoxShadow(
-                color: Color(0xFF000000).withValues(alpha: 0.04),
+                color: Color(0xFF000000).withOpacity(0.04),
                 spreadRadius: 2,
                 blurRadius: 8,
                 offset: const Offset(0, 6),

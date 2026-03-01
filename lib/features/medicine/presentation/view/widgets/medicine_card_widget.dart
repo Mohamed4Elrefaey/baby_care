@@ -26,7 +26,7 @@ class MedicineCardWidget extends StatelessWidget {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: AppColors.primary.withValues(alpha: 0.25),
+              color: AppColors.primary.withOpacity(0.25),
               blurRadius: 1,
               spreadRadius: 0,
               offset: const Offset(0, 0),
@@ -49,7 +49,7 @@ class MedicineCardWidget extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.primary.withValues(alpha: 0.25),
+                    color: AppColors.primary.withOpacity(0.25),
                     blurRadius: 2,
                     spreadRadius: 0,
                     offset: const Offset(0, 0),

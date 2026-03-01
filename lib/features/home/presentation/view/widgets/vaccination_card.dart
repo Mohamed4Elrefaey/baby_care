@@ -6,6 +6,7 @@ import 'package:baby_care/core/utils/app_text_styles.dart';
 import 'package:baby_care/core/widgets/custom_button.dart';
 import 'package:baby_care/core/widgets/widget_linear_color.dart';
 import 'package:baby_care/features/vaccination/data/model/vaccine_record_model.dart';
+import 'package:baby_care/generated/l10n.g.dart'; // or wherever S is
 import 'package:baby_care/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,27 +15,27 @@ import 'package:flutter_svg/svg.dart';
 class VaccinationCard extends StatelessWidget {
   const VaccinationCard({super.key, required this.vaccineRecord});
   final VaccineRecordModel vaccineRecord;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 16.0),
       child: Container(
-        // width: context.width / 2,
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: AppColors.gray4,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: AppColors.bG1, width: 1),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.06),
+              color: Colors.black.withOpacity(0.06),
               blurRadius: 8,
-              offset: Offset(0, 4),
+              offset: const Offset(0, 4),
             ),
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
+              color: Colors.black.withOpacity(0.04),
               blurRadius: 4,
-              offset: Offset(0, 0),
+              offset: const Offset(0, 0),
             ),
           ],
         ),
@@ -61,10 +62,12 @@ class VaccinationCard extends StatelessWidget {
                   child: FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      formatArabicDate(
-                        vaccineRecord.dueDate.toIso8601String(),
-                        context,
-                      ),
+                      vaccineRecord.dueDate != null
+                          ? formatArabicDate(
+                              vaccineRecord.dueDate!.toIso8601String(),
+                              context,
+                            )
+                          : '—',
                       style: AppTextStyles.body2Ragular,
                     ),
                   ),
@@ -73,15 +76,14 @@ class VaccinationCard extends StatelessWidget {
             ),
             8.height,
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-              color: Colors.yellow.withValues(alpha: 0.45),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+              color: Colors.yellow.withOpacity(0.45),
               child: Text(
-                '${S.of(context).timeAfter} ${daysBetweenFromToday(vaccineRecord.dueDate)} ${S.of(context).unitDays}',
+                '${S.of(context).timeAfter} ${vaccineRecord.dueDate != null ? daysBetweenFromToday(vaccineRecord.dueDate!) : '—'} ${S.of(context).unitDays}',
                 style: AppTextStyles.captionRagular,
               ),
             ),
             16.height,
-
             Row(
               children: [
                 Expanded(
@@ -91,31 +93,31 @@ class VaccinationCard extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (context) => Dialog(
-                          insetPadding: EdgeInsets.symmetric(horizontal: 16),
+                          insetPadding: const EdgeInsets.symmetric(horizontal: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Container(
                             height: 370,
-
-                            padding: EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(16),
                             child: Column(
-                              spacing: 8,
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
                                   S.of(context).reminderActivated,
                                   style: AppTextStyles.headerBold,
                                 ),
+                                const SizedBox(height: 8),
                                 SvgPicture.asset(
                                   'assets/svg/check-verified.svg',
                                   height: 90,
                                 ),
-
+                                const SizedBox(height: 8),
                                 Text(
                                   S.of(context).reminderActivatedMessage,
                                   style: AppTextStyles.body1Ragular,
                                 ),
+                                const SizedBox(height: 8),
                                 CustomButton(
                                   title: S.of(context).ok,
                                   onTap: () {

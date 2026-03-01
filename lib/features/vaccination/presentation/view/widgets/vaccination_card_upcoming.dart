@@ -25,12 +25,12 @@ class VaccinationCardUpcoming extends StatelessWidget {
         border: Border.all(color: AppColors.bG1, width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
+            color: Colors.black.withOpacity(0.06),
             blurRadius: 8,
             offset: Offset(0, 4),
           ),
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
+            color: Colors.black.withOpacity(0.04),
             blurRadius: 4,
             offset: Offset(0, 0),
           ),
@@ -93,7 +93,7 @@ class VaccinationCardUpcoming extends StatelessWidget {
           8.height,
           Container(
             padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-            color: Colors.yellow.withValues(alpha: 0.45),
+            color: Colors.yellow.withOpacity(0.45),
             child: Text(
               '${S.of(context).timeAfter} ${daysBetweenFromToday(vaccineRecordModel.dueDate)} ${S.of(context).unitDays}',
               style: AppTextStyles.captionRagular,

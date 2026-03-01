@@ -33,9 +33,8 @@ class ChildrenViewBody extends StatelessWidget {
               40.height,
               BlocBuilder<ChildrenCubit, ChildrenState>(
                 builder: (context, state) {
-                  print(state);
                   if (state is ChildrenLoading) {
-                    return ChildCardShimmerListView();
+                    return const ChildCardShimmerListView();
                   }
                   if (state is ChildrenError) {
                     return Text(
@@ -46,11 +45,12 @@ class ChildrenViewBody extends StatelessWidget {
                     );
                   }
                   if (state is ChildrenEmpty) {
-                    return Text('ChildrenEmpty');
+                    return const Text('ChildrenEmpty');
                   }
                   if (state is ChildrenLoaded) {
                     return ListView.builder(
                       shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: state.children.length,
                       itemBuilder: (context, index) => Padding(
                         padding: const EdgeInsets.only(bottom: 16),
@@ -61,6 +61,7 @@ class ChildrenViewBody extends StatelessWidget {
 
                   return ListView.builder(
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: 6,
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.only(bottom: 16),
@@ -74,14 +75,6 @@ class ChildrenViewBody extends StatelessWidget {
                       ),
                     ),
                   );
-                  // return ChildCard(
-                  //   childModel: ChildModel(
-                  //     id: '',
-                  //     name: 'علي محمد',
-                  //     gender: 'male',
-                  //     dateOfBirth: DateTime(2023, 4, 15),
-                  //   ),
-                  // );
                 },
               ),
             ],
@@ -99,8 +92,9 @@ class ChildCardShimmerListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
-      itemBuilder: (context, index) => Padding(
-        padding: const EdgeInsets.only(bottom: 16),
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index) => const Padding(
+        padding: EdgeInsets.only(bottom: 16),
         child: ChildCardShimmer(),
       ),
       itemCount: 3,
@@ -115,31 +109,30 @@ class ChildCardShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
       baseColor: Colors.grey.shade300,
-      highlightColor: AppColors.bG1.withValues(alpha: 0.04),
+      highlightColor: AppColors.bG1.withOpacity(0.04),
       child: Container(
         width: double.infinity,
-
         padding: 16.all,
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.graphic, width: 2),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
-          spacing: 16,
           children: [
             Container(
               height: 50,
               width: 50,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.amber,
               ),
             ),
+            const SizedBox(width: 16),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 8,
               children: [
                 Container(height: 10, width: 80, color: AppColors.gray4),
+                const SizedBox(height: 8),
                 Container(height: 10, width: 60, color: AppColors.gray4),
               ],
             ),
@@ -166,21 +159,18 @@ class ChildCard extends StatelessWidget {
         border: Border.all(color: AppColors.bG1, width: 2),
         boxShadow: [
           BoxShadow(
-            color: Color(0xFF000000).withValues(alpha: 0.04),
-
+            color: const Color(0xFF000000).withOpacity(0.04),
             blurRadius: 4,
             offset: const Offset(0, 0),
           ),
           BoxShadow(
-            color: Color(0xFF000000).withValues(alpha: 0.06),
-
+            color: const Color(0xFF000000).withOpacity(0.06),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
         ],
       ),
       child: Row(
-        spacing: 16,
         children: [
           SvgPicture.asset(
             childModel.gender == 'boy'
@@ -188,11 +178,11 @@ class ChildCard extends StatelessWidget {
                 : 'assets/svg/girl.svg',
             height: 50,
           ),
+          const SizedBox(width: 16),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(childModel.name, style: AppTextStyles.textStyle15),
-
               Text(
                 calculateAge(childModel.dateOfBirth),
                 style: AppTextStyles.captionRagular.copyWith(
@@ -206,18 +196,17 @@ class ChildCard extends StatelessWidget {
     );
   }
 
-  String calculateAge(DateTime birthDate) {
+  String calculateAge(DateTime? birthDate) {
+    if (birthDate == null) return '—';
     final now = DateTime.now();
 
     int years = now.year - birthDate.year;
     int months = now.month - birthDate.month;
 
-    // لو اليوم الحالي أقل من يوم الميلاد
     if (now.day < birthDate.day) {
       months--;
     }
 
-    // لو الشهور بالسالب
     if (months < 0) {
       years--;
       months += 12;
@@ -230,8 +219,10 @@ class ChildCard extends StatelessWidget {
       return '$yearText $monthText';
     } else if (yearText.isNotEmpty) {
       return yearText;
-    } else {
+    } else if (monthText.isNotEmpty) {
       return monthText;
+    } else {
+      return '0 شهر';
     }
   }
 }

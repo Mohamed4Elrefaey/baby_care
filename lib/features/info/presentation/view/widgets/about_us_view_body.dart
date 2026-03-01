@@ -33,12 +33,12 @@ class AboutUsViewBody extends StatelessWidget {
                   border: Border.all(color: AppColors.bG1, width: 2),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.04),
+                      color: Colors.black.withOpacity(0.04),
                       blurRadius: 4,
                       offset: Offset(0, 0),
                     ),
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.06),
+                      color: Colors.black.withOpacity(0.06),
                       blurRadius: 8,
                       offset: Offset(0, 4),
                     ),

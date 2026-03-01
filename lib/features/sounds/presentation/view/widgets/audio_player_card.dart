@@ -101,12 +101,12 @@ class _AudioPlayerCardState extends State<AudioPlayerCard>
         border: Border.all(color: AppColors.bG1),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF000000).withValues(alpha: 0.04),
+            color: const Color(0xFF000000).withOpacity(0.04),
             blurRadius: 4,
             offset: const Offset(0, 0),
           ),
           BoxShadow(
-            color: const Color(0xFF000000).withValues(alpha: 0.04),
+            color: const Color(0xFF000000).withOpacity(0.04),
             blurRadius: 8,
             offset: const Offset(0, 6),
           ),

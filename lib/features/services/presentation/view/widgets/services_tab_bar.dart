@@ -23,7 +23,7 @@ class ServicesTabBar extends StatelessWidget {
         border: Border.all(color: AppColors.graphic),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.black.withOpacity(0.05),
             blurRadius: 10,
             offset: Offset(0, 4),
           ),
@@ -41,7 +41,7 @@ class ServicesTabBar extends StatelessWidget {
             BoxShadow(
               offset: Offset(0, 1),
               blurRadius: 2,
-              color: const Color(0xff0A0D12).withValues(alpha: 0.05),
+              color: const Color(0xff0A0D12).withOpacity(0.05),
             ),
           ],
         ),

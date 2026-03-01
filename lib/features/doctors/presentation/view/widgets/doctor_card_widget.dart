@@ -30,7 +30,7 @@ class DoctorCardWidget extends StatelessWidget {
               offset: Offset(0, 0),
               blurRadius: 1,
               spreadRadius: 0,
-              color: Color(0xff70A97C).withValues(alpha: 0.1),
+              color: Color(0xff70A97C).withOpacity(0.1),
             ),
           ],
           color: Colors.white,
