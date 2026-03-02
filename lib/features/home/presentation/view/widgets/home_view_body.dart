@@ -69,26 +69,26 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   24.height,
                   SoundsSection(),
                   24.height,
-                  // CommunitySection(
-                  //   controller: communityController,
-                  //   currentIndex: communityCurrentIndex,
-                  //   onPageChanged: (value) {
-                  //     setState(() {
-                  //       communityCurrentIndex = value;
-                  //     });
-                  //   },
-                  // ),
-                  // 24.height,
-                  // ArticlesSection(
-                  //   controller: articlesController,
-                  //   currentIndex: articlesCurrentIndex,
-                  //   onPageChanged: (value) {
-                  //     setState(() {
-                  //       articlesCurrentIndex = value;
-                  //     });
-                  //   },
-                  // ),
-                  // 25.height,
+                  CommunitySection(
+                    controller: communityController,
+                    currentIndex: communityCurrentIndex,
+                    onPageChanged: (value) {
+                      setState(() {
+                        communityCurrentIndex = value;
+                      });
+                    },
+                  ),
+                  24.height,
+                  ArticlesSection(
+                    controller: articlesController,
+                    currentIndex: articlesCurrentIndex,
+                    onPageChanged: (value) {
+                      setState(() {
+                        articlesCurrentIndex = value;
+                      });
+                    },
+                  ),
+                  25.height,
                 ],
               ),
             );
@@ -110,26 +110,26 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
                   SoundsSection(),
                   24.height,
-                  // CommunitySection(
-                  //   controller: communityController,
-                  //   currentIndex: communityCurrentIndex,
-                  //   onPageChanged: (value) {
-                  //     setState(() {
-                  //       communityCurrentIndex = value;
-                  //     });
-                  //   },
-                  // ),
-                  // 24.height,
-                  // ArticlesSection(
-                  //   controller: articlesController,
-                  //   currentIndex: articlesCurrentIndex,
-                  //   onPageChanged: (value) {
-                  //     setState(() {
-                  //       articlesCurrentIndex = value;
-                  //     });
-                  //   },
-                  // ),
-                  // 25.height,
+                  CommunitySection(
+                    controller: communityController,
+                    currentIndex: communityCurrentIndex,
+                    onPageChanged: (value) {
+                      setState(() {
+                        communityCurrentIndex = value;
+                      });
+                    },
+                  ),
+                  24.height,
+                  ArticlesSection(
+                    controller: articlesController,
+                    currentIndex: articlesCurrentIndex,
+                    onPageChanged: (value) {
+                      setState(() {
+                        articlesCurrentIndex = value;
+                      });
+                    },
+                  ),
+                  25.height,
                 ],
               ),
             );

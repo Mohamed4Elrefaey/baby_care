@@ -14,12 +14,6 @@ class ArticleModel {
   @HiveField(4)
   final String imageUrl;
   @HiveField(5)
-  final String author;
-  @HiveField(6)
-  final DateTime createdAt;
-  @HiveField(7)
-  final DateTime updatedAt;
-  @HiveField(8)
   final String description;
 
   ArticleModel({
@@ -28,22 +22,17 @@ class ArticleModel {
     required this.content,
     required this.category,
     required this.imageUrl,
-    required this.author,
-    required this.createdAt,
-    required this.updatedAt,
     required this.description,
   });
 
   factory ArticleModel.fromJson(Map<String, dynamic> json) {
     return ArticleModel(
-      id: json['_id'],
+      id: json['id'].toString(),
       title: json['title'],
       content: json['content'],
       category: json['category'],
       imageUrl: json['imageUrl'],
-      author: json['author']['name'],
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
+
       description: json['description'],
     );
   }

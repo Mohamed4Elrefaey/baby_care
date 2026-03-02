@@ -22,17 +22,14 @@ class ArticleModelAdapter extends TypeAdapter<ArticleModel> {
       content: fields[2] as String,
       category: fields[3] as String,
       imageUrl: fields[4] as String,
-      author: fields[5] as String,
-      createdAt: fields[6] as DateTime,
-      updatedAt: fields[7] as DateTime,
-      description: fields[8] as String,
+      description: fields[5] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, ArticleModel obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -44,12 +41,6 @@ class ArticleModelAdapter extends TypeAdapter<ArticleModel> {
       ..writeByte(4)
       ..write(obj.imageUrl)
       ..writeByte(5)
-      ..write(obj.author)
-      ..writeByte(6)
-      ..write(obj.createdAt)
-      ..writeByte(7)
-      ..write(obj.updatedAt)
-      ..writeByte(8)
       ..write(obj.description);
   }
 

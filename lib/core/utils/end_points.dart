@@ -23,11 +23,7 @@ class ApiEndpoints {
   // ==============================================================================
   // 3. الأطفال (Children)
   // ==============================================================================
-  static const String children =
-      "/children"; // POST: إضافة طفل (ممرضة), GET: بحث (ممرضة)
   static const String myChildren = "children/my-children"; // GET: أطفالي (للأم)
-  static String child(String childId) =>
-      "/children/$childId"; // GET: تفاصيل, PUT: تعديل
 
   // ==============================================================================
   // 4. سجلات التطعيمات (Vaccination Records)
@@ -84,7 +80,7 @@ class ApiEndpoints {
   // ==============================================================================
 
   // المقالات
-  static const String articles = "/articles"; // GET
+  static const String articles = "articles"; // GET
   static String article(String articleId) => "/articles/$articleId"; // GET
 
   // الأدوية
