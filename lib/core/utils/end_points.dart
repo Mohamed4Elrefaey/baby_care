@@ -84,17 +84,17 @@ class ApiEndpoints {
   static String article(String articleId) => "/articles/$articleId"; // GET
 
   // الأدوية
-  static const String medicines = "/medicines"; // GET
+  static const String medicines = "medicines"; // GET
   static String medicine(String medicineId) => "/medicines/$medicineId"; // GET
 
   // الأطباء
-  static const String doctors = "/doctors"; // GET
+  static const String doctors = "doctors"; // GET
   static const String nearbyDoctors = "/doctors/nearby"; // GET (يحتاج lat, lng)
   static String doctor(String doctorId) => "/doctors/$doctorId"; // GET
 
   // الأصوات
-  static const String sounds = "/sounds"; // GET
-  static String sound(String soundId) => "/sounds/$soundId"; // GET
+  static const String sounds = "sounds"; // GET
+  static String sound(String soundId) => "sounds/$soundId"; // GET
 
   // الوصفات
   static const String recipes = "/recipes"; // GET

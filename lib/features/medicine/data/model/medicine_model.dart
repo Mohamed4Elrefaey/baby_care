@@ -36,7 +36,7 @@ class MedicineModel {
 
   factory MedicineModel.fromJson(Map<String, dynamic> json) {
     return MedicineModel(
-      id: json['_id'],
+      id: json['id'].toString(),
       name: json['name'],
       description: json['description'],
       details: json['details'],

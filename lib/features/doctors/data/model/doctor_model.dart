@@ -42,7 +42,7 @@ class DoctorModel {
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
     return DoctorModel(
-      id: json['_id'],
+      id: json['id'].toString(),
       name: json['name'],
       imageUrl: json['imageUrl'],
       specialty: json['specialty'],
@@ -50,7 +50,7 @@ class DoctorModel {
       whatsappNumber: json['whatsappNumber'],
       clinics: List<String>.from(json['clinics'] ?? []),
       workingHours: json['workingHours'],
-      price: json['price'],
+      price: json['price'].toInt(),
       address: json['address'],
       phone: json['phone'],
     );

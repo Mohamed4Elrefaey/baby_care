@@ -27,7 +27,7 @@ class SoundModel {
 
   factory SoundModel.fromJson(Map<String, dynamic> json) {
     return SoundModel(
-      id: json['_id'],
+      id: json['id'].toString(),
       title: json['title'],
       description: json['description'],
       category: json['category'],
