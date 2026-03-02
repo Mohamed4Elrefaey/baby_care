@@ -67,8 +67,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                     },
                   ),
                   24.height,
-                  // SoundsSection(),
-                  // 24.height,
+                  SoundsSection(),
+                  24.height,
                   // CommunitySection(
                   //   controller: communityController,
                   //   currentIndex: communityCurrentIndex,
@@ -108,8 +108,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   EmptyHomeAppBar(),
                   22.height,
 
-                  // SoundsSection(),
-                  // 24.height,
+                  SoundsSection(),
+                  24.height,
                   // CommunitySection(
                   //   controller: communityController,
                   //   currentIndex: communityCurrentIndex,
