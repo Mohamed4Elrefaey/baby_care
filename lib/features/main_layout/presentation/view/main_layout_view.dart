@@ -21,7 +21,7 @@ class _MainLayoutViewState extends State<MainLayoutView> {
   final List<Widget> pages = [
     const HomeView(),
     const Scaffold(body: Center(child: Text('Tracking Page'))),
-    const ServicesView(),
+    const Scaffold(body: Center(child: Text('Tracking Page'))),
     const Scaffold(body: Center(child: Text('Community Page'))),
     ProfileViewBody(),
   ];

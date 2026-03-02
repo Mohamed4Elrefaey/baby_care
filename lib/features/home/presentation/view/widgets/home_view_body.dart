@@ -37,7 +37,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   );
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -57,39 +56,39 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 children: [
                   Constants.ktopPadding.height,
                   CustomHomeAppBar(child: state.children),
-                  22.height,
-                  VaccinationSection(
-                    currentIndex: vaccinationCurrentIndex,
-                    controller: vaccinationController,
-                    onPageChanged: (index) {
-                      setState(() {
-                        vaccinationCurrentIndex = index;
-                      });
-                    },
-                  ),
-                  24.height,
-                  SoundsSection(),
-                  24.height,
-                  CommunitySection(
-                    controller: communityController,
-                    currentIndex: communityCurrentIndex,
-                    onPageChanged: (value) {
-                      setState(() {
-                        communityCurrentIndex = value;
-                      });
-                    },
-                  ),
-                  24.height,
-                  ArticlesSection(
-                    controller: articlesController,
-                    currentIndex: articlesCurrentIndex,
-                    onPageChanged: (value) {
-                      setState(() {
-                        articlesCurrentIndex = value;
-                      });
-                    },
-                  ),
-                  25.height,
+                  // 22.height,
+                  // VaccinationSection(
+                  //   currentIndex: vaccinationCurrentIndex,
+                  //   controller: vaccinationController,
+                  //   onPageChanged: (index) {
+                  //     setState(() {
+                  //       vaccinationCurrentIndex = index;
+                  //     });
+                  //   },
+                  // ),
+                  // 24.height,
+                  // SoundsSection(),
+                  // 24.height,
+                  // CommunitySection(
+                  //   controller: communityController,
+                  //   currentIndex: communityCurrentIndex,
+                  //   onPageChanged: (value) {
+                  //     setState(() {
+                  //       communityCurrentIndex = value;
+                  //     });
+                  //   },
+                  // ),
+                  // 24.height,
+                  // ArticlesSection(
+                  //   controller: articlesController,
+                  //   currentIndex: articlesCurrentIndex,
+                  //   onPageChanged: (value) {
+                  //     setState(() {
+                  //       articlesCurrentIndex = value;
+                  //     });
+                  //   },
+                  // ),
+                  // 25.height,
                 ],
               ),
             );
@@ -109,28 +108,28 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   EmptyHomeAppBar(),
                   22.height,
 
-                  SoundsSection(),
-                  24.height,
-                  CommunitySection(
-                    controller: communityController,
-                    currentIndex: communityCurrentIndex,
-                    onPageChanged: (value) {
-                      setState(() {
-                        communityCurrentIndex = value;
-                      });
-                    },
-                  ),
-                  24.height,
-                  ArticlesSection(
-                    controller: articlesController,
-                    currentIndex: articlesCurrentIndex,
-                    onPageChanged: (value) {
-                      setState(() {
-                        articlesCurrentIndex = value;
-                      });
-                    },
-                  ),
-                  25.height,
+                  // SoundsSection(),
+                  // 24.height,
+                  // CommunitySection(
+                  //   controller: communityController,
+                  //   currentIndex: communityCurrentIndex,
+                  //   onPageChanged: (value) {
+                  //     setState(() {
+                  //       communityCurrentIndex = value;
+                  //     });
+                  //   },
+                  // ),
+                  // 24.height,
+                  // ArticlesSection(
+                  //   controller: articlesController,
+                  //   currentIndex: articlesCurrentIndex,
+                  //   onPageChanged: (value) {
+                  //     setState(() {
+                  //       articlesCurrentIndex = value;
+                  //     });
+                  //   },
+                  // ),
+                  // 25.height,
                 ],
               ),
             );
