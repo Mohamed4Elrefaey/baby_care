@@ -20,7 +20,7 @@ class BookDoctorContainer extends StatelessWidget {
             offset: Offset(0, 0),
             blurRadius: 2,
             spreadRadius: 0,
-            color: Colors.black.withValues(alpha: 0.25),
+            color: Colors.black.withOpacity(0.25),
           ),
         ],
       ),

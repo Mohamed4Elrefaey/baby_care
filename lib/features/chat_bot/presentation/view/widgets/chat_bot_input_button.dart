@@ -22,12 +22,12 @@ class ChatBotInputButton extends StatelessWidget {
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: Color(0xFF000000).withValues(alpha: 0.02),
+              color: Color(0xFF000000).withOpacity(0.02),
               blurRadius: 5.25,
               offset: const Offset(0, 0),
             ),
             BoxShadow(
-              color: Color(0xFF000000).withValues(alpha: 0.08),
+              color: Color(0xFF000000).withOpacity(0.08),
               blurRadius: 3.5,
               offset: const Offset(0, 1.75),
             ),

@@ -21,10 +21,13 @@ class CustomHomeAppBar extends StatefulWidget {
 class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
   int currentIndex = 0;
   late ChildModel currentChild;
+
   @override
   void initState() {
     super.initState();
-    currentChild = widget.child[0];
+    if (widget.child.isNotEmpty) {
+      currentChild = widget.child[0];
+    }
   }
 
   @override
@@ -32,8 +35,20 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
     return BlocConsumer<CurrentChildCubit, String?>(
       listener: (context, state) async {},
       builder: (context, state) {
-        if (state.isNotNull) {
-          currentChild = widget.child.firstWhere((child) => child.id == state);
+        if (state.isNotNull && widget.child.isNotEmpty) {
+          try {
+            currentChild = widget.child.firstWhere((child) => child.id == state);
+          } catch (e) {
+            // Handle if child not found, keep existing or reset to first
+            if (widget.child.isNotEmpty) {
+              currentChild = widget.child[0];
+            }
+          }
+        } else if (widget.child.isNotEmpty) {
+          currentChild = widget.child[0];
+        } else {
+          // Fallback if list is empty
+          return const SizedBox.shrink();
         }
 
         return Padding(
@@ -59,7 +74,7 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               AppBarActionIcon(
                 onTab: () {},
                 svgIconPath: 'assets/svg/notifications.svg',
@@ -67,13 +82,12 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
               4.width,
               AppBarActionIcon(
                 onTab: () async {
-                  if (currentIndex < widget.child.length - 1) {
-                    currentIndex++;
-                    BlocProvider.of<CurrentChildCubit>(
-                      context,
-                    ).setCurrentChild(widget.child[currentIndex].id);
-                  } else {
-                    currentIndex = 0;
+                  if (widget.child.isNotEmpty) {
+                    if (currentIndex < widget.child.length - 1) {
+                      currentIndex++;
+                    } else {
+                      currentIndex = 0;
+                    }
                     BlocProvider.of<CurrentChildCubit>(
                       context,
                     ).setCurrentChild(widget.child[currentIndex].id);
@@ -88,18 +102,17 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
     );
   }
 
-  String calculateAge(DateTime birthDate) {
+  String calculateAge(DateTime? birthDate) {
+    if (birthDate == null) return '—';
     final now = DateTime.now();
 
     int years = now.year - birthDate.year;
     int months = now.month - birthDate.month;
 
-    // لو اليوم الحالي أقل من يوم الميلاد
     if (now.day < birthDate.day) {
       months--;
     }
 
-    // لو الشهور بالسالب
     if (months < 0) {
       years--;
       months += 12;
@@ -112,8 +125,10 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
       return '$yearText $monthText';
     } else if (yearText.isNotEmpty) {
       return yearText;
-    } else {
+    } else if (monthText.isNotEmpty) {
       return monthText;
+    } else {
+      return '0 شهر';
     }
   }
 }

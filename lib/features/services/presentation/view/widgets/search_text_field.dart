@@ -21,7 +21,7 @@ class SearchTextField extends StatelessWidget {
           BoxShadow(
             offset: Offset(0, 1),
             blurRadius: 2,
-            color: const Color(0xff0A0D12).withValues(alpha: 0.05),
+            color: const Color(0xff0A0D12).withOpacity(0.05),
           ),
         ],
       ),
@@ -66,7 +66,7 @@ class SearchDoctorTextField extends StatelessWidget {
             BoxShadow(
               offset: Offset(0, 1),
               blurRadius: 2,
-              color: const Color(0xff0A0D12).withValues(alpha: 0.05),
+              color: const Color(0xff0A0D12).withOpacity(0.05),
             ),
           ],
         ),

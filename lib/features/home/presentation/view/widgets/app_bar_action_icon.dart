@@ -18,8 +18,8 @@ class AppBarActionIcon extends StatelessWidget {
       child: CircleAvatarLinearColor(
         linearGradient: LinearGradient(
           colors: [
-            Color(0xFF47B2B9).withValues(alpha: 0.6),
-            Color(0xFF70A97C).withValues(alpha: 0.6),
+            Color(0xFF47B2B9).withOpacity(0.6),
+            Color(0xFF70A97C).withOpacity(0.6),
           ],
         ),
         radius: 16,

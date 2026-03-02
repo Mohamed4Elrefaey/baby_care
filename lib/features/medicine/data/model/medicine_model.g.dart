@@ -26,13 +26,14 @@ class MedicineModelAdapter extends TypeAdapter<MedicineModel> {
       usage: fields[6] as String,
       sideEffects: fields[7] as String,
       imageUrl: fields[8] as String,
+      extraFields: (fields[9] as Map).cast<String, dynamic>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, MedicineModel obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -50,7 +51,9 @@ class MedicineModelAdapter extends TypeAdapter<MedicineModel> {
       ..writeByte(7)
       ..write(obj.sideEffects)
       ..writeByte(8)
-      ..write(obj.imageUrl);
+      ..write(obj.imageUrl)
+      ..writeByte(9)
+      ..write(obj.extraFields);
   }
 
   @override

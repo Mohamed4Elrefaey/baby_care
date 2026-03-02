@@ -7,5 +7,28 @@ class ChatBotModel {
   final String tixt;
   @HiveField(1)
   final bool isAnswer;
-  ChatBotModel({required this.tixt, required this.isAnswer});
+  @HiveField(2)
+  final Map<String, dynamic> extraFields;
+
+  ChatBotModel({
+    required this.tixt,
+    required this.isAnswer,
+    this.extraFields = const {},
+  });
+
+  factory ChatBotModel.fromJson(Map<String, dynamic> json) {
+    final knownKeys = {'tixt', 'isAnswer'};
+    final extra = Map<String, dynamic>.from(json)
+      ..removeWhere((key, value) => knownKeys.contains(key));
+
+    return ChatBotModel(
+      tixt: json['tixt'] as String? ?? '',
+      isAnswer: json['isAnswer'] as bool? ?? false,
+      extraFields: extra,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {'tixt': tixt, 'isAnswer': isAnswer, ...extraFields};
+  }
 }
