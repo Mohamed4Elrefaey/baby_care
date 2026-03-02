@@ -7,6 +7,16 @@ class ApiEndpoints {
   static const String articles = "/articles";
   static String article(String id) => "/articles/$id";
 
+
+  // عشان الايرورز بس ياعلي 
+  static const String changePassword = "/auth/change-password";
+  static const String updateFcmToken =
+      "/auth/fcm-token"; // PUT: تحديث توكن الإشعارات
+  static const String chatbotSearch = "/faqs/search"; // GET (يحتاج ?q=...)
+  static String faq(String faqId) => "/faqs/$faqId"; // GET
+
+
+  
   // Children
   static const String children = "/children";
   static const String myChildren = "/children/my-children";
