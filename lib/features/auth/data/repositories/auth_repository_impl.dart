@@ -30,6 +30,7 @@ class AuthRepositoryImpl extends AuthRepository {
       if (response.statusCode == 200) {
         var user = UserModel.fromJson(response.data);
         await localDataSource.cacheUserToken(response.data['token']);
+        print(response.data['token']);
         await localDataSource.cacheUser(user);
         await remoteDataSource.updateFcmToken();
         return Right(user);

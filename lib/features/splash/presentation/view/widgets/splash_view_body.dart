@@ -30,7 +30,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initState() {
     super.initState();
     initAnimations();
-    BlocProvider.of<AuthCubit>(context).checkAuth();
     requestPermission();
     setupInteractedMessage();
   }
@@ -39,6 +38,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) async {
+        print("Auth State Changed: $state");
         if (state is AuthSuccess) {
           navigateToNextView(MainLayoutView.routeName, state.user);
         }
@@ -143,7 +143,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToNextView(String routeName, [dynamic arguments]) {
     Future.delayed(const Duration(milliseconds: 2800), () {
-      controller.stop();
+      if (!mounted) return;
+
       Navigator.pushReplacementNamed(context, routeName, arguments: arguments);
     });
   }

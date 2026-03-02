@@ -26,7 +26,8 @@ class BabyCareApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => LocaleCubit()),
         BlocProvider(
-          create: (_) => AuthCubit(authRepository: sl<AuthRepository>()),
+          create: (_) =>
+              AuthCubit(authRepository: sl<AuthRepository>()..checkAuth()),
         ),
       ],
       child: BlocBuilder<AuthCubit, AuthState>(
@@ -43,9 +44,9 @@ class BabyCareApp extends StatelessWidget {
                     debugShowCheckedModeBanner: false,
                     theme: AppTheme.lightTheme,
                     onGenerateRoute: onGenerateRoute,
-                    home: authState is AuthSuccess
-                        ? const MainLayoutView()
-                        : const SignInView(),
+                    // home: authState is AuthSuccess
+                    //     ? const MainLayoutView()
+                    //     : const SignInView(),
                     localizationsDelegates: const [
                       S.delegate,
                       GlobalMaterialLocalizations.delegate,

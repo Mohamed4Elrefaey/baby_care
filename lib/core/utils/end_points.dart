@@ -25,8 +25,7 @@ class ApiEndpoints {
   // ==============================================================================
   static const String children =
       "/children"; // POST: إضافة طفل (ممرضة), GET: بحث (ممرضة)
-  static const String myChildren =
-      "/children/my-children"; // GET: أطفالي (للأم)
+  static const String myChildren = "children/my-children"; // GET: أطفالي (للأم)
   static String child(String childId) =>
       "/children/$childId"; // GET: تفاصيل, PUT: تعديل
 

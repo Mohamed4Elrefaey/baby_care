@@ -21,7 +21,7 @@ class ChildModel extends HiveObject {
 
   factory ChildModel.fromJson(Map<String, dynamic> json) {
     return ChildModel(
-      id: json['_id'] as String,
+      id: json['id'].toString(),
       name: json['name'] as String,
       gender: json['gender'] as String,
       dateOfBirth: DateTime.parse(json['dateOfBirth'] as String),
