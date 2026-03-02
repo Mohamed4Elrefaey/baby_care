@@ -42,7 +42,7 @@ class VaccinationCardUpcoming extends StatelessWidget {
           Row(
             children: [
               Text(
-                vaccineRecordModel.vaccine.name,
+                vaccineRecordModel.vaccineName,
                 style: AppTextStyles.textStyle15,
               ),
               Spacer(),
@@ -52,13 +52,10 @@ class VaccinationCardUpcoming extends StatelessWidget {
 
                   builder: (context) => AlertDialog(
                     title: Text(
-                      vaccineRecordModel.vaccine.name,
+                      vaccineRecordModel.vaccineName,
                       style: AppTextStyles.headerBold,
                     ),
-                    content: Text(
-                      vaccineRecordModel.vaccine.description ?? '',
-                      style: AppTextStyles.body1Ragular,
-                    ),
+                    content: Text('', style: AppTextStyles.body1Ragular),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),

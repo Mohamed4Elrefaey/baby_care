@@ -19,7 +19,6 @@ class VaccinationCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 16.0),
       child: Container(
-        // width: context.width / 2,
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: AppColors.gray4,
@@ -42,7 +41,7 @@ class VaccinationCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              vaccineRecord.vaccine.name,
+              vaccineRecord.vaccineName,
               style: AppTextStyles.textStyle15,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,

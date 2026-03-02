@@ -26,10 +26,17 @@ class _SplashViewBodyState extends State<SplashViewBody>
   late Animation<double> scale;
   late Animation<double> rotation;
 
+  bool _isNavigated = false; // 🔥 يمنع التكرار
+
   @override
   void initState() {
     super.initState();
     initAnimations();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<AuthCubit>().checkAuth();
+    });
+
     requestPermission();
     setupInteractedMessage();
   }
@@ -38,16 +45,19 @@ class _SplashViewBodyState extends State<SplashViewBody>
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) async {
-        print("Auth State Changed: $state");
+        if (_isNavigated) return;
+
         if (state is AuthSuccess) {
           navigateToNextView(MainLayoutView.routeName, state.user);
         }
+
         if (state is Unauthenticated) {
           bool onBoardingCompleted =
               await SharedPreferencesService.getData(
                 key: Constants.onBoardingKey,
               ) ??
               false;
+
           if (onBoardingCompleted) {
             navigateToNextView(SignInView.routeName);
           } else {
@@ -80,32 +90,22 @@ class _SplashViewBodyState extends State<SplashViewBody>
   Future<void> requestPermission() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-    NotificationSettings settings = await messaging.requestPermission(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
-
-    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-    } else if (settings.authorizationStatus ==
-        AuthorizationStatus.provisional) {
-    } else {}
+    await messaging.requestPermission(alert: true, badge: true, sound: true);
   }
 
   void initAnimations() {
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2800), // 4 × 700ms
+      duration: const Duration(milliseconds: 2800),
     );
 
-    // Scale: تصغير → ثابت أثناء اللفة → ثابت أثناء الرجوع → تكبير
     scale = TweenSequence([
       TweenSequenceItem(
         tween: Tween<double>(
           begin: 1.0,
           end: 0.7,
         ).chain(CurveTween(curve: Curves.easeInOut)),
-        weight: 25, // 700ms
+        weight: 25,
       ),
       TweenSequenceItem(tween: ConstantTween<double>(0.7), weight: 25),
       TweenSequenceItem(tween: ConstantTween<double>(0.7), weight: 25),
@@ -118,7 +118,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
       ),
     ]).animate(controller);
 
-    // Rotation: ثابت أثناء التصغير → لف 180° → رجوع → ثابت أثناء التكبير
     rotation = TweenSequence([
       TweenSequenceItem(tween: ConstantTween<double>(0.0), weight: 25),
       TweenSequenceItem(
@@ -142,15 +141,19 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void navigateToNextView(String routeName, [dynamic arguments]) {
+    if (_isNavigated) return;
+    _isNavigated = true;
+
     Future.delayed(const Duration(milliseconds: 2800), () {
       if (!mounted) return;
+
+      controller.stop(); // 🔥 يمنع crash الـ ticker
 
       Navigator.pushReplacementNamed(context, routeName, arguments: arguments);
     });
   }
 
   Future<void> setupInteractedMessage() async {
-    // 1. حالة التطبيق كان مقفول تماماً (Terminated)
     RemoteMessage? initialMessage = await FirebaseMessaging.instance
         .getInitialMessage();
 
@@ -158,15 +161,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
       _handleMessage(initialMessage);
     }
 
-    // 2. حالة التطبيق كان في الخلفية (Background)
     FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
   }
 
   void _handleMessage(RemoteMessage message) {
-    // هنا بتكتب اللوجيك بتاعك
-    // مثلاً لو فيه data بتقول روح لصفحة التطعيمات
     if (message.data['screen'] == 'vaccination') {
-      // navigateTo...
       print("المستخدم ضغط على الإشعار وعايز يروح صفحة التطعيمات");
     }
   }
@@ -174,7 +173,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
   @override
   void dispose() {
     controller.dispose();
-
     super.dispose();
   }
 }

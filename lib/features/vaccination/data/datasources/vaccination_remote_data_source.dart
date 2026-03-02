@@ -23,7 +23,7 @@ class VaccinationRemoteDataSourceImpl implements VaccinationRemoteDataSource {
   @override
   Future<Response<dynamic>> getVaccineRecordListHome(String childId) async {
     final response = await apiHelper.get(
-      ApiEndpoints.childVaccinationScheduleHome(childId),
+      ApiEndpoints.childVaccinationSchedule(childId),
       requiresAuth: true,
     );
 

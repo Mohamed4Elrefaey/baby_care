@@ -33,7 +33,7 @@ class ApiEndpoints {
   // 4. سجلات التطعيمات (Vaccination Records)
   // ==============================================================================
   static String childVaccinationSchedule(String childId) =>
-      "/records/child/$childId"; // GET: عرض الجدول
+      "children/$childId/vaccination-schedule"; // GET: عرض الجدول
   static String childVaccinationScheduleHome(String childId) =>
       "/records/child/$childId?mode=home"; // GET: عرض الجدول
   static String updateVaccineStatus(String scheduleId) =>

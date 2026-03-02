@@ -5,7 +5,6 @@ import 'package:baby_care/features/children/data/model/child_model.dart';
 import 'package:baby_care/features/doctors/data/model/doctor_model.dart';
 import 'package:baby_care/features/medicine/data/model/medicine_model.dart';
 import 'package:baby_care/features/sounds/data/model/sound_model.dart';
-import 'package:baby_care/features/vaccination/data/model/vaccine_model.dart';
 import 'package:baby_care/features/vaccination/data/model/vaccine_record_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -55,7 +54,6 @@ class HiveHelper {
   static void registerAdapter() {
     Hive.registerAdapter(UserModelAdapter());
     Hive.registerAdapter(ChildModelAdapter());
-    Hive.registerAdapter(VaccineModelAdapter());
     Hive.registerAdapter(VaccineRecordModelAdapter());
     Hive.registerAdapter(ChatBotModelAdapter());
     Hive.registerAdapter(ArticleModelAdapter());

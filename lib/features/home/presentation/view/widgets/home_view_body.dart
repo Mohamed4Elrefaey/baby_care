@@ -56,17 +56,17 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 children: [
                   Constants.ktopPadding.height,
                   CustomHomeAppBar(child: state.children),
-                  // 22.height,
-                  // VaccinationSection(
-                  //   currentIndex: vaccinationCurrentIndex,
-                  //   controller: vaccinationController,
-                  //   onPageChanged: (index) {
-                  //     setState(() {
-                  //       vaccinationCurrentIndex = index;
-                  //     });
-                  //   },
-                  // ),
-                  // 24.height,
+                  22.height,
+                  VaccinationSection(
+                    currentIndex: vaccinationCurrentIndex,
+                    controller: vaccinationController,
+                    onPageChanged: (index) {
+                      setState(() {
+                        vaccinationCurrentIndex = index;
+                      });
+                    },
+                  ),
+                  24.height,
                   // SoundsSection(),
                   // 24.height,
                   // CommunitySection(

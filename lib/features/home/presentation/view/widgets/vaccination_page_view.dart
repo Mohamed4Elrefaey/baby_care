@@ -21,7 +21,7 @@ class VaccinationPageView extends StatelessWidget {
       child: PageView.builder(
         padEnds: false,
         controller: controller,
-        itemCount: vaccineRecords.length,
+        itemCount: vaccineRecords.length > 3 ? 3 : vaccineRecords.length,
 
         onPageChanged: onPageChanged,
         itemBuilder: (context, index) {

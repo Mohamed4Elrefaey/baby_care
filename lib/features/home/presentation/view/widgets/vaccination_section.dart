@@ -89,7 +89,12 @@ class VaccinationSection extends StatelessWidget {
 
                   10.height,
 
-                  CustomDotsIndicator(currentIndex: currentIndex),
+                  CustomDotsIndicator(
+                    currentIndex: currentIndex,
+                    totalDots: state.vaccinationData[0].length > 3
+                        ? 3
+                        : state.vaccinationData[0].length,
+                  ),
                 ],
               );
             }

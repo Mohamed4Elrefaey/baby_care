@@ -40,7 +40,7 @@ class VaccinationCardPrevious extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  vaccineRecordModel.vaccine.name,
+                  vaccineRecordModel.vaccineName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.textStyle15,

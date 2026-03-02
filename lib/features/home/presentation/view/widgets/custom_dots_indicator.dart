@@ -2,14 +2,19 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
 class CustomDotsIndicator extends StatelessWidget {
-  const CustomDotsIndicator({super.key, required this.currentIndex});
+  const CustomDotsIndicator({
+    super.key,
+    required this.currentIndex,
+    this.totalDots = 3,
+  });
 
   final int currentIndex;
+  final int totalDots;
 
   @override
   Widget build(BuildContext context) {
     return DotsIndicator(
-      dotsCount: 3,
+      dotsCount: totalDots,
       position: currentIndex.toDouble(),
 
       decorator: DotsDecorator(

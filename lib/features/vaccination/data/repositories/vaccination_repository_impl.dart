@@ -27,14 +27,14 @@ class VaccinationRepositoryImpl implements VaccinationRepository {
         List<VaccineRecordModel> upcomingList = [];
         List<VaccineRecordModel> historyList = [];
 
-        for (var element
-            in (response.data['data']['upcoming'] as List<dynamic>)) {
-          upcomingList.add(VaccineRecordModel.fromJson(element));
+        for (var element in (response.data['schedule'] as List<dynamic>)) {
+          if (element['status'] == 'upcoming') {
+            upcomingList.add(VaccineRecordModel.fromJson(element));
+          } else {
+            historyList.add(VaccineRecordModel.fromJson(element));
+          }
         }
-        for (var element
-            in (response.data['data']['history'] as List<dynamic>)) {
-          historyList.add(VaccineRecordModel.fromJson(element));
-        }
+
         List<List<VaccineRecordModel>> listToReturn = [
           upcomingList,
           historyList,
@@ -72,8 +72,10 @@ class VaccinationRepositoryImpl implements VaccinationRepository {
       if (response.statusCode == 200) {
         List<VaccineRecordModel> recordList = [];
 
-        for (var element in (response.data['data'] as List<dynamic>)) {
-          recordList.add(VaccineRecordModel.fromJson(element));
+        for (var element in (response.data['schedule'] as List<dynamic>)) {
+          if (element['status'] == 'upcoming') {
+            recordList.add(VaccineRecordModel.fromJson(element));
+          }
         }
 
         await localDataSource.cacheScheduleRecordListHome(recordList, id);
